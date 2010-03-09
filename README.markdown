@@ -2,7 +2,7 @@ Problem
 =======
  - OpenID is complex, limited and hard to use for users
  - Facebook / Twitter / Myspace / Google / MS-LiveId / AOL connections require different libraries and knowledge
- - Multiple heterogenouse providers are hard to map to a single user
+ - Multiple heterogeneous providers are hard to map to a single user
 
 Solution
 ========
