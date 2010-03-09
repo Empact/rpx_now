@@ -21,11 +21,13 @@ module RPXNow
       parse_response(response)
     end
 
-    def self.host(subdomain=nil)
-      if subdomain
-        "https://#{subdomain}.#{Api::HOST}"
-      else
+    def self.host(realm=nil)
+      if realm.nil?
         "https://#{Api::HOST}"
+      elsif realm.include?('.')
+        "https://#{realm}"
+      else
+        "https://#{realm}.#{Api::HOST}"
       end
     end
 
