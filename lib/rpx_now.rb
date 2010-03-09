@@ -7,7 +7,9 @@ module RPXNow
 
   attr_accessor :api_key
   attr_accessor :api_version
+  attr_accessor :ssl
   self.api_version = 2
+  self.ssl = true
 
   VERSION = File.read( File.join(File.dirname(__FILE__),'..','VERSION') ).strip
 
@@ -98,6 +100,7 @@ module RPXNow
         RPXNOW.token_url = '#{url}';
         RPXNOW.realm = '#{subdomain}';
         RPXNOW.overlay = true;
+        RPXNOW.ssl = #{ssl};
         #{ "RPXNOW.language_preference = '#{options[:language]}';" if options[:language] }
         #{ "RPXNOW.default_provider = '#{options[:default_provider]}';" if options[:default_provider] }
         #{ "RPXNOW.flags = '#{options[:flags]}';" if options[:flags] }

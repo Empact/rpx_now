@@ -22,13 +22,16 @@ module RPXNow
     end
 
     def self.host(realm=nil)
-      if realm.nil?
-        "https://#{Api::HOST}"
-      elsif realm.include?('.')
-        "https://#{realm}"
-      else
-        "https://#{realm}.#{Api::HOST}"
-      end
+      protocol = RPXNow.ssl ? 'https' : 'http'
+      domain =
+        if realm.nil?
+          Api::HOST
+        elsif realm.include?('.')
+          realm
+        else
+          "#{realm}.#{Api::HOST}"
+        end
+      "#{protocol}://#{domain}"
     end
 
     private

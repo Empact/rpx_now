@@ -12,9 +12,18 @@ describe RPXNow::Api do
   end
 
   describe :host do
+    after do
+      RPXNow.ssl = true
+    end
+
     context "when the realm is a domain" do
       it "returns the domain itself" do
         RPXNow::Api.host("login.example.com").should == 'https://login.example.com'
+      end
+
+      it "honors the ssl setting" do
+        RPXNow.ssl = false
+        RPXNow::Api.host("login.example.com").should == 'http://login.example.com'
       end
     end
 
@@ -22,11 +31,21 @@ describe RPXNow::Api do
       it "returns the qualified rpx domain" do
         RPXNow::Api.host("example").should == 'https://example.rpxnow.com'
       end
+
+      it "honors the ssl setting" do
+        RPXNow.ssl = false
+        RPXNow::Api.host("example").should == 'http://example.rpxnow.com'
+      end
     end
 
     context "when no realm is provided" do
       it "returns the rpx domain" do
         RPXNow::Api.host.should == 'https://rpxnow.com'
+      end
+
+      it "honors the ssl setting" do
+        RPXNow.ssl = false
+        RPXNow::Api.host.should == 'http://rpxnow.com'
       end
     end
   end
